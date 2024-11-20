@@ -1,154 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tax Management System</title>
-    <link rel="stylesheet" href="taxmstyle.css">
-    <script src="https://kit.fontawesome.com/72fc552813.js" crossorigin="anonymous"></script>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tax Management System</title>
+        <link rel="stylesheet" href="taxmstyle.css">
+        <script src="https://kit.fontawesome.com/72fc552813.js" crossorigin="anonymous"></script>
+        
+        
+        <script defer>
+            // Your JavaScript code here
+            // This will trigger the background image fade effect on scroll
+    window.addEventListener('scroll', () => {
+    const header = document.getElementById('header');
+    if (window.scrollY > 100) {  // Trigger effect after scrolling 100px
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
+
+        </script>
+    </head>
+    
 <body>
     <div id="header">
         <div class="container1">
             <nav>
-                
                 <ul>
                     <li><a href="#header">Home</a></li>
                     <li><a href="#calculate">Calculate</a></li>
-                    <li><a href="#blog">blogs</a></li>
+                    <li><a href="#blog">Blogs</a></li>
                     <li><a href="#contact">Contact</a></li>    
-                                            
                 </ul> 
-               
             </nav>
             <div class="header-text">
                 <p>
-                    
-                    <h1>
-                        <span>Tax Management System</span>
-                    </h1>
-                    <br>
-                    <br>
+                    <h1><span>Tax Management System</span></h1>
+                    <br><br>
                     Created by:<br>
                     <br>Darshan Zawar<br>Aadisha Thole<br>Gargi Nakil<br>Prajwal Urkude<br>
+                </p>
             </div>
         </div>
     </div>
+
     <!---------------------------------------calculator-------------------------------->
 
-        <div id="calculate">
-            
-            <div class="container2">
-                <div class="row">
-                    <div class="about-col-1">
-                    
-                    
-                    </div>
-                    <div class="about-col-2">
-                        <h1 class="sub-title"><span><br>Calculate</span></h1>
-                        <!----------------------------------main calculattor start-------------------------------->
-                        
-                            <form>
-                                <label for="income">Enter your income</label>
-                                <input type="number" id="income" name="income" required>
-                        
-                                <button type="submit">Calculate tax</button>
-                            </form>
-                        
-                            <div id="tax"></div>
-                        
-                            <div id="suggestions" style="display: none;">
-                            <h2>Suggested Actions:</h2>
-                            <ul id="suggestion-list"></ul>
-                            </div>
-                        
-                            <script>
-                                function calculateTax(income) {
-                                    let tax = 0;
-                                    if (income <= 500000) {
-                                        tax = 0;
-                                    } else if (income <= 1000000) {
-                                        tax = (income) * 0.1;
-                                    } else if (income >= 100000) {
-                                        tax =  (income ) * 0.3;
-                                    } else {
-                                        tax = (income - 100000) * 0.3;
-                                    }
-                                    return tax;
-                                }
-                        
-                                function getSuggestions(income) {
-                                    const suggestionList = document.getElementById('suggestion-list');
-                                    suggestionList.innerHTML = '';
-                     
-                                    if (income <= 500000) {
-                                     suggestionList.innerHTML += '<li>You may want to look for ways to increase your income</li>';
-                                    } else if (income <= 1000000) {
-                                        suggestionList.innerHTML += '<li>You could consider investing in a tax-saving scheme for that you could refer our blogs down below</li>';
-                                    } else if (income >= 1000000) {
-                                        suggestionList.innerHTML += '<li>You could look into taking advantage of tax deductions</li>';
-                                    } else {
-                                        suggestionList.innerHTML += '<li>You may want to consult a financial advisor to optimize your tax strategy</li>';
-                                 }
-                        
-                                    document.getElementById('suggestions').style.display = 'block';
-                                }
-                        
-                                const form = document.querySelector('form');
-                                const taxElement = document.querySelector('#tax');
-                        
-                                form.addEventListener('submit', (event) => {
-                                    event.preventDefault();
-                        
-                                    const income = parseInt(form.elements.income.value);
-                                    const tax = calculateTax(income);
-                        
-                                    taxElement.textContent = `Your tax is ${tax}`;
-                                    getSuggestions(income);
-                                
-                                });
-                            </script>
-                        
-                        <!----------------main claculator ends---------------------------------------------------->
-                        
-                        
-                            <h1 class="note">
-                                <br>Note
-                            </h1>
-                        
-                        <p class="income123"><br> 
-                            1. The amonut you enter should be in INR(Indian Rupees)<br>
-                            2. The amount you enter should be net your net income(All sources included).<br>
-                            3. Income enterd should be in per anum(PA)<br>
-                            4. Deduct the debt you have from your Net Income<br>
-                               Enterd income= Net Income PA - Total Debt<br><br>
-                        </p>
+    <div id="calculate">
+        <div class="container2">
+            <div class="row">
+                <div class="about-col-1"></div>
+                <div class="about-col-2">
+                    <h1 class="sub-title"><span><br>Calculate</span></h1>
+                    <!-- Calculator Form -->
+                    <form>
+                        <label for="income">Enter your income</label>
+                        <input type="number" id="income" name="income" required>
 
-                        <h1 class="Debt">
-                            What is Debt<br><br></h1>
-                        <p class="whtisdebt">
-                            Any loan you took from bank<br><br>
-                        
-                            Any loss you HAd in Current financial year<br><br>
+                        <label for="homeLoan">Enter your annual home loan interest (if applicable)</label>
+                        <input type="number" id="homeLoan" name="homeLoan" placeholder="Home loan interest" required>
 
-                            Rent, Fees(Medical,College,), Any LIC policy you pay for <br><br>
-                            To Konw more about Debt <span><a href="https://www.investopedia.com/terms/d/debt.asp">Click Here</a></span><br><br><br><br><br><br><br><br><br><br>
-                        </p>
-                
+                        <label for="section80c">Enter your total Section 80C deductions (e.g., PPF, EPF, life insurance)</label>
+                        <input type="number" id="section80c" name="section80c" placeholder="Section 80C deductions" required>
+
+                        <label for="healthInsurance">Enter your health insurance premium (Section 80D)</label>
+                        <input type="number" id="healthInsurance" name="healthInsurance" placeholder="Health insurance premium" required>
+
+                        <button type="submit">Calculate tax</button>
+                    </form>
+
+                    <div id="tax"></div>
+
+                    <div id="suggestions" style="display: none;">
+                        <h2>Suggested Actions:</h2>
+                        <ul id="suggestion-list"></ul>
                     </div>
+
+                    <script>
+                        function calculateTax(income, homeLoan, section80c, healthInsurance) {
+                            let tax = 0;
+
+                            income -= section80c;
+                            income -= healthInsurance;
+
+                            let homeLoanDeduction = Math.min(homeLoan, 200000);
+                            income -= homeLoanDeduction;
+
+                            if (income <= 250000) {
+                                tax = 0;
+                            } else if (income <= 500000) {
+                                tax = (income - 250000) * 0.05;
+                            } else if (income <= 1000000) {
+                                tax = 250000 * 0.05 + (income - 500000) * 0.1;
+                            } else if (income <= 1250000) {
+                                tax = 250000 * 0.05 + 500000 * 0.1 + (income - 1000000) * 0.15;
+                            } else if (income <= 1500000) {
+                                tax = 250000 * 0.05 + 500000 * 0.1 + 250000 * 0.15 + (income - 1250000) * 0.2;
+                            } else {
+                                tax = 250000 * 0.05 + 500000 * 0.1 + 250000 * 0.15 + 500000 * 0.2 + (income - 1500000) * 0.3;
+                            }
+                            return tax;
+                        }
+
+                        function getSuggestions(income, homeLoan, section80c, healthInsurance) {
+                            const suggestionList = document.getElementById('suggestion-list');
+                            suggestionList.innerHTML = '';
+
+                            if (income <= 250000) {
+                                suggestionList.innerHTML += '<li>You may want to explore tax-saving investments or increase income</li>';
+                            } else if (income <= 500000) {
+                                suggestionList.innerHTML += '<li>Consider tax-saving options like 80C deductions.</li>';
+                            } else if (income <= 1000000) {
+                                suggestionList.innerHTML += '<li>You could invest in ELSS for tax deductions under section 80C.</li>';
+                            } else {
+                                suggestionList.innerHTML += '<li>Look into tax planning strategies like insurance premiums or PPF.</li>';
+                            }
+
+                            if (homeLoan > 0) {
+                                suggestionList.innerHTML += '<li>Consider utilizing the home loan interest deduction under Section 24 for additional tax savings.</li>';
+                            }
+
+                            document.getElementById('suggestions').style.display = 'block';
+                        }
+
+                        const form = document.querySelector('form');
+                        const taxElement = document.querySelector('#tax');
+
+                        form.addEventListener('submit', (event) => {
+                            event.preventDefault();
+
+                            const income = parseInt(form.elements.income.value);
+                            const homeLoan = parseInt(form.elements.homeLoan.value);
+                            const section80c = parseInt(form.elements.section80c.value);
+                            const healthInsurance = parseInt(form.elements.healthInsurance.value);
+
+                            const tax = calculateTax(income, homeLoan, section80c, healthInsurance);
+
+                            taxElement.textContent = `Your tax is ₹${tax.toFixed(2)}`;
+                            getSuggestions(income, homeLoan, section80c, healthInsurance);
+                        });
+                    </script>
+
+                    <h1 class="note"><br>Note</h1>
+                    <p class="income123"><br> 
+                        1. The amount you enter should be in INR (Indian Rupees).<br>
+                        2. The amount you enter should be your net income (All sources included).<br>
+                        3. Income entered should be per annum (PA).<br>
+                        4. Deduct any debt you have from your Net Income.<br>
+                        Entered income = Net Income PA - Total Debt<br><br>
+                    </p>
+
+                    <h1 class="Debt">What is Debt<br><br></h1>
+                    <p class="whtisdebt">
+                        Any loan you took from the bank<br><br>
+                        Any loss you had in the current financial year<br><br>
+                        Rent, Fees (Medical, College), Any LIC policy you pay for.<br><br>
+                        To know more about Debt <span><a href="https://www.investopedia.com/terms/d/debt.asp">Click Here</a></span><br><br><br><br><br><br><br><br><br><br>
+                    </p>
                 </div>
             </div>
         </div>
-
+    </div>
 
     <!--------------------------------------------------------------------->
-   
-    
-      
-    
-    
-<!-----------------------------------------blogs------------------------------------------>
+
+    <!-- Blogs Section -->
     <div class="blogsab">
         <div id="blog">
             <div class="container4">
@@ -157,12 +175,11 @@
                     <div class="work">
                         <img src="images/blog 1.jpg">
                         <div class="layer">
-                            <h3>What Is More Beneficial Old Income Tax Regime Or New Income Tax Regime
-                            </h3>
+                            <h3>What Is More Beneficial: Old Income Tax Regime or New Income Tax Regime</h3>
                             <p>Date - 10th Feb 2023
                                 <br>The current financial year budget made a big change for an assessee by bringing 
                                 in the New tax regime as a voluntary compliance for all the taxpayers.</p>
-                                <a href="https://www.taxmanager.in/blogs/What_Is_More_Beneficial_Old_Income_Tax_Regime_Or_New_Income_Tax_Regime"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                            <a href="https://www.taxmanager.in/blogs/What_Is_More_Beneficial_Old_Income_Tax_Regime_Or_New_Income_Tax_Regime"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                         </div>
                     </div>
                     <div class="work">
@@ -170,11 +187,9 @@
                         <div class="layer">
                             <h3>Calculate Your Tax Return FY 23-24 Under New Tax Regime and Old Tax Regime</h3>
                             <p>Date - 3rd Feb 2023
-                                <br>
-                                Anyone who has an income that crosses a specific threshold is required to pay taxes.
-                                 Income Tax is the tax that ...
-                            </p>
-                                <a href="https://www.taxmanager.in/blogs/Calculator-Your-Tax-Return-FY-23-24-Under-New-Regime-and-Old-Regime"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                <br>Anyone who has an income that crosses a specific threshold is required to pay taxes.
+                                 Income Tax is the tax that ...</p>
+                            <a href="https://www.taxmanager.in/blogs/Calculator-Your-Tax-Return-FY-23-24-Under-New-Regime-and-Old-Regime"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                         </div>
                     </div>
                     <div class="work">
@@ -183,9 +198,8 @@
                             <h3>Union Budget Highlights 2023</h3>
                             <p>Date - 3rd Feb 2023<br>
                                 On 1 Feb 2023 , our honourable Finance minister 
-                                Nirmala Sitharaman presented her last full year budget of the Modi government.
-                            </p>
-                                <a href="https://www.taxmanager.in/Blogs/Union_Budget_Highlights_2023"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                Nirmala Sitharaman presented her last full year budget of the Modi government.</p>
+                            <a href="https://www.taxmanager.in/Blogs/Union_Budget_Highlights_2023"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                         </div>
                     </div>
                 </div>
@@ -193,76 +207,38 @@
             </div>
         </div>  
     </div>
-<!---------------------------contact------------------------------->
-<div id="contact">
-    <div class="container5">
-        <div class="row">
-            <div class="contact-left">
-                <h1 class="sub-title">Contact Us</h1>
-                <p><i class="fa-solid fa-paper-plane"></i>taxmanagers@gmail.com</p>
-                <p><i class="fa-sharp fa-solid fa-phone"></i>+91 9145XXXX00</p>
-                <div class="social-icons">
-                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                
-                <a href="#/"><i class="fa-brands fa-instagram"></i></a>
-                
+
+    <!---------------------------contact------------------------------->
+
+    <div id="contact">
+        <div class="container5">
+            <div class="row">
+                <div class="contact-left">
+                    <h1 class="sub-title">Contact Us</h1>
+                    <p><i class="fa-solid fa-paper-plane"></i>darshanzawar0508@gmail.com</p>
+                    <p><i class="fa-sharp fa-solid fa-phone"></i>+91 9981153351</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
                 </div>
-                
-            </div>
-            <div class="contact-right">
-                <form name="submit-to-google-sheet">
-                <input type="text" name="Name" placeholder="Your Name" required>
-                <input type="email" name="Email" placeholder="Your Email" required>
-                <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
-                <button type="submit" class="btn btn2">Submit</button>
-                </form>
-                <span id="msg"></span>
+                <div class="contact-right">
+                    <form method="POST" action="https://formspree.io/f/xwpkqnej">
+                        <input type="text" name="name" placeholder="Your name">
+                        <input type="text" name="Contact No" placeholder="Your Number">
+
+                        <input type="email" name="email" placeholder="Your email">
+                        <textarea name="message" placeholder="Your message"></textarea>
+                        <button type="submit">Send</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+
     <div class="copyright">
-        <p>Copyright © The Tax Managers 2023</p>
+        <p>Copyright © The Tax Managers 2024</p>
     </div>
-</div>
 
-
-<script>
-    var tablinks = document.getElementsByClassName("tab-links");
-    var tabcontents = document.getElementsByClassName("tab-contents");
-    
-    function opentab(tabname){
-        for(tablink of tablinks){
-            tablink.classList.remove("active-link");
-        }
-        for(tabcontent of tabcontents){
-            tabcontent.classList.remove("active-tab");
-        }
-        event.currentTarget.classList.add("active-link");
-        document.getElementById(tabname).classList.add("active-tab")
-    }
-
-</script>
-
-<script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxORqX7quFFRiXmLIsukN9r-lyO_ATi92cYy5H5lZ4xi1fpVNSF5hjXFwuWORTvQtJkDA/exec'
-    const form1 = document.forms['submit-to-google-sheet']
-    const msg = document.getElementById("msg")
-  
-    form.addEventListener('submit', e => {
-      e.preventDefault()
-      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-        .then(response => {
-            msg.innerHTML = "Message Sent Scussefully"
-            setTimeout(function(){
-                msg.innerHTML = ""
-            },5000)
-            form.reset()
-        })
-        .catch(error => console.error('Error!', error.message))
-    })
-  </script>
-
-  
-  
 </body>
 </html>
